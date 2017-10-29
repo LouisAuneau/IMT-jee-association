@@ -1,7 +1,6 @@
 <web-app>
     <servlet>
         <servlet-name>HelloServlet</servlet-name>
-        <description>Servlet de test Hello</description>
         <servlet-class>CatalogueServlet</servlet-class>
     </servlet>
     <servlet>
@@ -9,19 +8,20 @@
         <servlet-class>LoginServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>loginPageServlet</servlet-name>
-        <jsp-file>/pages/login.jsp</jsp-file>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>RegisterServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>loginPageServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
 </web-app>
