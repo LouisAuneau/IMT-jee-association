@@ -1,6 +1,14 @@
 package modele;
 
-public class Utilisateur {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
+/**
+ * Classe représentant un utilisateur du système.
+ * @author Louis Auneau.
+ */
+public class Utilisateur implements Modele<Utilisateur>{
 	private String login;
 	private String password;
 	
@@ -45,5 +53,27 @@ public class Utilisateur {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean persist() {
+		// TODO
+		return true;
+	}
+
+	public Utilisateur retrieve() {
+		this.login = "TestUser";
+		this.password = "TestPassword";
+		return this;
+	}
+
+	public ArrayList<Utilisateur> retrieveAll() {
+		ArrayList<Utilisateur> mock = new ArrayList<Utilisateur>();
+		Utilisateur user1 = new Utilisateur("TestUser", "TestPassword");
+		Utilisateur user2 = new Utilisateur("TestUser2", "TestPassword2");
+		Utilisateur user3 = new Utilisateur("TestUser3", "TestPassword3");
+		mock.add(user1);
+		mock.add(user2);
+		mock.add(user3);
+		return mock;
 	}
 }
