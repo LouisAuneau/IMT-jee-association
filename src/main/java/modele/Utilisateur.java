@@ -6,7 +6,6 @@ import java.util.HashSet;
 
 /**
  * Classe représentant un utilisateur du système.
- * @author Louis Auneau.
  */
 public class Utilisateur implements Modele<Utilisateur>{
 	private String login;
@@ -57,6 +56,11 @@ public class Utilisateur implements Modele<Utilisateur>{
 
 	public boolean persist() {
 		// TODO
+		return true;
+	}
+
+	public boolean update() {
+		// TODO 
 		return true;
 	}
 

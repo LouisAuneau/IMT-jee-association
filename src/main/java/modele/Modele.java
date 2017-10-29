@@ -10,6 +10,12 @@ public interface Modele<M> {
 	public boolean persist();
 	
 	/**
+	 * Met à jour le modele.
+	 * @return boolean Vrai si le modele est mis à jour, faux sinon.
+	 */
+	public boolean update();
+	
+	/**
 	 * Récupère l'objet courant depuis la base de données.
 	 * @return M Object récupéré depuis la base de données.
 	 */
