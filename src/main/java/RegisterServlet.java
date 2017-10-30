@@ -1,3 +1,5 @@
+import utils.SessionType;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +28,9 @@ public class RegisterServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         //Invalidate old session if sessionType != register
-        if(req.getSession()!= null && req.getSession().getAttribute("sessionType") != "register") {
+        if(req.getSession()!= null
+                && req.getSession().getAttribute("sessionType") != SessionType.REGISTER_SESSION)
+        {
             req.getSession(false).invalidate();
         }
 
@@ -65,23 +69,23 @@ public class RegisterServlet extends HttpServlet {
         String country = req.getParameter("country");
 
         //Check if the username is given
-        if(username.isEmpty()) {
+        if(username == null || username.isEmpty()) {
             session.setAttribute("noUsernameGiven",true);
         }
         //Check if the password is given
-        else if(password.isEmpty()) {
+        else if(password == null || password.isEmpty()) {
             session.setAttribute("noPasswordGiven",true);
         }
         //Check if the password2 is given
-        else if(password2.isEmpty()) {
+        else if(password2 == null || password2.isEmpty()) {
             session.setAttribute("noPassword2Given",true);
         }
         //Check if the secondName is given
-        else if(secondName.isEmpty()) {
+        else if(secondName == null || secondName.isEmpty()) {
             session.setAttribute("noSecondNameGiven",true);
         }
         //Check if the firstName is given
-        else if(firstName.isEmpty()) {
+        else if(firstName == null || firstName.isEmpty()) {
             session.setAttribute("noFirstNameGiven", true);
         }
         else if(!password.equals(password2)) {
@@ -93,12 +97,12 @@ public class RegisterServlet extends HttpServlet {
         }
 
         if(registerSuccess) {
-            session.setAttribute("sessionType", "login"); //Session type is login
+            session.setAttribute("sessionType", SessionType.LOGIN_SESSION); //Session type is login
             session.setAttribute("registerSucceed", true); //Session type is login
             resp.sendRedirect("login");
         }
         else {
-            session.setAttribute("sessionType", "register"); //Session type is register
+            session.setAttribute("sessionType", SessionType.REGISTER_SESSION); //Session type is register
             //Save user input in request in case of forward on register page
             session.setAttribute("username", username);
             session.setAttribute("secondName", secondName);

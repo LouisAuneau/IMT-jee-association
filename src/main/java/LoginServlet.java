@@ -1,3 +1,5 @@
+import utils.SessionType;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +24,9 @@ public class LoginServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         //Invalidate old session if sessionType != login
-        if(req.getSession()!= null && req.getSession().getAttribute("sessionType") != "login") {
+        if(req.getSession()!= null
+                && req.getSession().getAttribute("sessionType") != SessionType.LOGIN_SESSION)
+        {
             req.getSession(false).invalidate();
         }
 
@@ -43,18 +47,18 @@ public class LoginServlet extends HttpServlet {
             req.getSession(false).invalidate();
         }
         HttpSession session = req.getSession(true);
-        session.setAttribute("sessionType", "login"); //Session type is login
+        session.setAttribute("sessionType", SessionType.LOGIN_SESSION); //Session type is login
 
         //Get login connexion form user inputs
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
         //Check if the username is given
-        if(username.isEmpty()) {
+        if(username == null || username.isEmpty()) {
             session.setAttribute("noUsernameGiven",true);
         }
         //Check if the password is given
-        else if(password.isEmpty()) {
+        else if(password == null || password.isEmpty()) {
             session.setAttribute("noPasswordGiven",true);
         }
         //Check if connexion works

@@ -13,6 +13,40 @@
     <!--Titre de la page-->
     <h1>Création d'un compte</h1>
 
+    <!--Affichage des messages d'erreurs-->
+    <c:choose>
+        <c:when test="${noUsernameGiven}">
+            <div class="alert alert-danger" role="alert">
+                Erreur lors de la création de compte, merci d'indiquer votre identifiant.
+            </div>
+        </c:when>
+        <c:when test="${noPasswordGiven}">
+            <div class="alert alert-danger" role="alert">
+                Erreur lors de la création de compte, merci d'indiquer votre mot de passe.
+            </div>
+        </c:when>
+        <c:when test="${noPassword2Given}">
+            <div class="alert alert-danger" role="alert">
+                Erreur lors de la création de compte, merci d'indiquer votre mot de passe de confirmation.
+            </div>
+        </c:when>
+        <c:when test="${noFirstNameGiven}">
+            <div class="alert alert-danger" role="alert">
+                Erreur lors de la création de compte, merci d'indiquer votre prénom.
+            </div>
+        </c:when>
+        <c:when test="${noSecondNameGiven}">
+            <div class="alert alert-danger" role="alert">
+                Erreur lors de la création de compte, merci d'indiquer votre nom de famille.
+            </div>
+        </c:when>
+        <c:when test="${noPasswordMatch}">
+            <div class="alert alert-danger" role="alert">
+                Erreur lors de la création de compte, les mots de passe ne correspondent pas.
+            </div>
+        </c:when>
+    </c:choose>
+
     <!--Formulaire de connexion-->
     <form action="register" method="post">
         <div class="form-group">
@@ -58,40 +92,6 @@
         </div>
         <button  class="btn btn-primary" type="submit">S'enregister</button>
     </form>
-
-    <!--Affichage des messages d'erreurs-->
-    <c:choose>
-        <c:when test="${noUsernameGiven}">
-            <div class="alert alert-danger" role="alert">
-                Erreur lors de la création de compte, merci d'indiquer votre identifiant.
-            </div>
-        </c:when>
-        <c:when test="${noPasswordGiven}">
-            <div class="alert alert-danger" role="alert">
-                Erreur lors de la création de compte, merci d'indiquer votre mot de passe.
-            </div>
-        </c:when>
-        <c:when test="${noPassword2Given}">
-            <div class="alert alert-danger" role="alert">
-                Erreur lors de la création de compte, merci d'indiquer votre mot de passe de confirmation.
-            </div>
-        </c:when>
-        <c:when test="${noFirstNameGiven}">
-            <div class="alert alert-danger" role="alert">
-                Erreur lors de la création de compte, merci d'indiquer votre prénom.
-            </div>
-        </c:when>
-        <c:when test="${noSecondNameGiven}">
-            <div class="alert alert-danger" role="alert">
-                Erreur lors de la création de compte, merci d'indiquer votre nom de famille.
-            </div>
-        </c:when>
-        <c:when test="${noPasswordMatch}">
-            <div class="alert alert-danger" role="alert">
-                Erreur lors de la création de compte, les mots de passe ne correspondent pas.
-            </div>
-        </c:when>
-    </c:choose>
 
     <!--Lien d'accès à la page de login-->
     <div class="alert alert-primary" role="alert">

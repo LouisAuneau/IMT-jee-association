@@ -12,19 +12,6 @@
         <!--Titre de la page-->
         <h1>Connexion</h1>
 
-        <!--Formulaire de connexion-->
-        <form action="login" method="post">
-            <div class="form-group">
-                <label for="usernameInput">Identifiant</label>
-                <input class="form-control" type="text" id="usernameInput" name="username" placeholder="noémie" value="${username}"/>
-            </div>
-            <div class="form-group">
-                <label for="passwordInput">Mot de passe</label>
-                <input class="form-control" type="password" id="passwordInput" name="password" placeholder="mdp1234"/>
-            </div>
-            <button  class="btn btn-primary" type="submit">Se connecter</button>
-        </form>
-
         <!--Affichage des messages d'erreurs-->
         <c:choose>
             <c:when test="${noUsernameGiven}">
@@ -48,6 +35,19 @@
                 </div>
             </c:when>
         </c:choose>
+
+        <!--Formulaire de connexion-->
+        <form action="login" method="post">
+            <div class="form-group">
+                <label for="usernameInput">Identifiant</label>
+                <input class="form-control" type="text" id="usernameInput" name="username" placeholder="noémie" value="${username}"/>
+            </div>
+            <div class="form-group">
+                <label for="passwordInput">Mot de passe</label>
+                <input class="form-control" type="password" id="passwordInput" name="password" placeholder="mdp1234"/>
+            </div>
+            <button  class="btn btn-primary" type="submit">Se connecter</button>
+        </form>
 
         <!--Lien d'accès à la page de création de compte-->
         <div class="alert alert-primary" role="alert">
