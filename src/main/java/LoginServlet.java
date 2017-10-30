@@ -9,6 +9,11 @@ import java.util.Objects;
 public class LoginServlet extends HttpServlet {
 
     @Override
+    public void init() throws ServletException {
+        System.out.println("Initializing LoginServlet");
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {

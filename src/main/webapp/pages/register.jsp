@@ -16,7 +16,7 @@
     <!--Formulaire de connexion-->
     <form action="register" method="post">
         <div class="form-group">
-            <label for="usernameInput">Identifiant <span class="badge badge-primary">*</span></label>
+            <label for="usernameInput">Identifiant <span class="badge badge-primary">* (Champ requis)</span></label>
             <input class="form-control" type="text" id="usernameInput" name="username" placeholder="noémie" value="${username}"/>
         </div>
         <div class="form-group">

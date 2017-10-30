@@ -12,6 +12,12 @@ public class RegisterServlet extends HttpServlet {
     private static ArrayList<String> countryList;
 
     @Override
+    public void init() throws ServletException {
+        System.out.println("Initializing RegisterServlet");
+        getCountryList();
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
