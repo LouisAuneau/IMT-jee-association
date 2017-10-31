@@ -1,3 +1,5 @@
+package servlets;
+
 import utils.SessionType;
 
 import javax.servlet.ServletException;
@@ -8,15 +10,18 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Servlet that manage login page
+ */
 public class LoginServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        System.out.println("Initializing LoginServlet");
+        System.out.println("Initializing servlets.LoginServlet");
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
         //Set encoding of request and response
@@ -35,7 +40,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
         //Set encoding of request and response

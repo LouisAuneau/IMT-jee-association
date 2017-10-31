@@ -1,3 +1,5 @@
+package servlets;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +11,7 @@ public class CatalogueServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        System.out.println("Initializing CatalogueServlet");
+        System.out.println("Initializing servlets.CatalogueServlet");
     }
 
     @Override

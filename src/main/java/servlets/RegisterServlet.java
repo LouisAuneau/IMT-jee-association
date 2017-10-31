@@ -1,3 +1,6 @@
+package servlets;
+
+import utils.CountryList;
 import utils.SessionType;
 
 import javax.servlet.ServletException;
@@ -7,20 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 
+/**
+ * Servlet that manage register page
+ */
 public class RegisterServlet extends HttpServlet {
-
-    private static ArrayList<String> countryList;
 
     @Override
     public void init() throws ServletException {
-        System.out.println("Initializing RegisterServlet");
-        getCountryList();
+        System.out.println("Initializing servlets.RegisterServlet");
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
         //Set encoding of request and response
@@ -35,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
         //Retreive list of countries
-        ArrayList<String> countryList = RegisterServlet.getCountryList();
+        ArrayList<String> countryList = CountryList.getCountryList();
         req.setAttribute("countryList", countryList);
 
         //Forward request
@@ -43,7 +45,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
         //Set encoding of request and response
@@ -113,20 +115,6 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("country", country);
             resp.sendRedirect("register");
         }
-    }
-
-    private static ArrayList<String> getCountryList() {
-        if(countryList == null) {
-            countryList = new ArrayList<>();
-            String[] locales = Locale.getISOCountries();
-            for (String countryCode : locales) {
-                Locale obj = new Locale("", countryCode);
-                String country = obj.getDisplayCountry() + " " + "(" + obj.getCountry() + ")";
-                countryList.add(country);
-            }
-            java.util.Collections.sort(countryList);
-        }
-        return countryList;
     }
 
 }

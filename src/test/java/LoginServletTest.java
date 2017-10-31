@@ -1,5 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
+import servlets.LoginServlet;
 import utils.MyHttpSessionMock;
 import utils.SessionType;
 

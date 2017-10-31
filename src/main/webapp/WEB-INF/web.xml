@@ -1,22 +1,22 @@
 <web-app>
     <servlet>
         <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>CatalogueServlet</servlet-class>
+        <servlet-class>servlets.CatalogueServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>LoginServlet</servlet-class>
+        <servlet-name>servlets.LoginServlet</servlet-name>
+        <servlet-class>servlets.LoginServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>RegisterServlet</servlet-class>
+        <servlet-name>servlets.RegisterServlet</servlet-name>
+        <servlet-class>servlets.RegisterServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>HomeServlet</servlet-name>
-        <servlet-class>HomeServlet</servlet-class>
+        <servlet-name>servlets.HomeServlet</servlet-name>
+        <servlet-class>servlets.HomeServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
 
@@ -25,15 +25,15 @@
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
+        <servlet-name>servlets.LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-name>servlets.RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>HomeServlet</servlet-name>
+        <servlet-name>servlets.HomeServlet</servlet-name>
         <url-pattern></url-pattern>
     </servlet-mapping>
 </web-app>
