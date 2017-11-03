@@ -40,7 +40,7 @@ public class ArticlePersistenceTest
 		ArticleEntityMock mock = new ArticleEntityMock();
 		
 		// TODO : set primary key values here 
-		process( service, mock, 0  );
+		process( service, mock, 1  );
 		// process( service, mock, ... );
 	}
 

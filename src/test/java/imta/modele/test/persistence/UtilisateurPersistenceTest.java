@@ -40,7 +40,7 @@ public class UtilisateurPersistenceTest
 		UtilisateurEntityMock mock = new UtilisateurEntityMock();
 		
 		// TODO : set primary key values here 
-		process( service, mock, 0  );
+		process( service, mock, 1  );
 		// process( service, mock, ... );
 	}
 

@@ -10,7 +10,7 @@ Site d'une association avec gestion des utilisateurs et de produits.
 - Taper les commandes suivantes pour creer la base ainsi qu'un utilisateur :
 ```
 CONNECT 'jdbc:derby:jee-association;create=true';
-CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.user.LOGIN', 'PASSWORD');
+CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.user.ADMIN', 'PASSWORD');
 ```
 - Fermer l'utilitaire.
 

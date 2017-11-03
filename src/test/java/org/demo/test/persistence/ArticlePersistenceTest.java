@@ -4,12 +4,10 @@
  */
 package org.demo.test.persistence;
 
-
-import org.demo.bean.jpa.ArticleEntity;
-import org.demo.mock.ArticleEntityMock;
-import org.demo.persistence.PersistenceServiceProvider;
-import org.demo.persistence.services.ArticlePersistence;
-
+import imta.modele.bean.jpa.ArticleEntity;
+import imta.modele.mock.ArticleEntityMock;
+import imta.modele.persistence.PersistenceServiceProvider;
+import imta.modele.persistence.services.ArticlePersistence;
 import org.junit.Assert;
 import org.junit.Test;
 

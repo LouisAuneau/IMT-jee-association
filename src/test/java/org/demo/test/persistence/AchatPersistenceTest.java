@@ -4,12 +4,10 @@
  */
 package org.demo.test.persistence;
 
-
-import org.demo.bean.jpa.AchatEntity;
-import org.demo.mock.AchatEntityMock;
-import org.demo.persistence.PersistenceServiceProvider;
-import org.demo.persistence.services.AchatPersistence;
-
+import imta.modele.bean.jpa.AchatEntity;
+import imta.modele.mock.AchatEntityMock;
+import imta.modele.persistence.PersistenceServiceProvider;
+import imta.modele.persistence.services.AchatPersistence;
 import org.junit.Assert;
 import org.junit.Test;
 

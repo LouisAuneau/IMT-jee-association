@@ -4,12 +4,10 @@
  */
 package org.demo.test.persistence;
 
-
-import org.demo.bean.jpa.UtilisateurEntity;
-import org.demo.mock.UtilisateurEntityMock;
-import org.demo.persistence.PersistenceServiceProvider;
-import org.demo.persistence.services.UtilisateurPersistence;
-
+import imta.modele.bean.jpa.UtilisateurEntity;
+import imta.modele.mock.UtilisateurEntityMock;
+import imta.modele.persistence.PersistenceServiceProvider;
+import imta.modele.persistence.services.UtilisateurPersistence;
 import org.junit.Assert;
 import org.junit.Test;
 
