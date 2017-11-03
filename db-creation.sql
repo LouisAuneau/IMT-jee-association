@@ -1,31 +1,35 @@
 CREATE TABLE Utilisateur (
-    id INTEGER NOT NULL 
-		PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
-     	(START WITH 1, INCREMENT BY 1),
-    nom varchar(255) NOT NULL,
-    motdepasse varchar(255) NOT NULL
+    identifiant VARCHAR(255) NOT NULL PRIMARY KEY,
+    password varchar(255) NOT NULL,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    adresse LONG VARCHAR,
+    city VARCHAR(255),
+    code_postal VARCHAR(64),
+    pays VARCHAR(255)
 );
 
-
 CREATE TABLE Article (
-    id INTEGER NOT NULL 
-		PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
-     	(START WITH 1, INCREMENT BY 1),
-    nom varchar(255) NOT NULL,
+    code CHAR(2) NOT NULL PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prix FLOAT(2),
    	description LONG VARCHAR NOT NULL,
-   	quantite INTEGER NOT NULL DEFAULT 0
+   	quantite INTEGER NOT NULL DEFAULT 0,
+    CONSTRAINT CODE_CK CHECK (code LIKE '[A-Z][0-9]')
 );
 
 CREATE TABLE Achat (
-	id INTEGER NOT NULL 
-		PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
-     	(START WITH 1, INCREMENT BY 1),
-    articleid INTEGER NOT NULL,
-    utilisateurid INTEGER NOT NULL,
-	CONSTRAINT UTILISATEUR_FK
-		FOREIGN KEY (utilisateurid)
-		REFERENCES Utilisateur (id),
-	CONSTRAINT ARTICLE_FK
-		FOREIGN KEY (articleid)
-		REFERENCES Article (id)
+    id INTEGER NOT NULL 
+        PRIMARY KEY GENERATED ALWAYS AS IDENTITY 
+        (START WITH 1, INCREMENT BY 1),
+    article CHAR(2) NOT NULL,
+    utilisateur VARCHAR(255) NOT NULL,
+    quantite INTEGER NOT NULL DEFAULT 1,
+    CONSTRAINT UTILISATEUR_FK
+        FOREIGN KEY (utilisateur)
+        REFERENCES Utilisateur(identifiant),
+    CONSTRAINT ARTICLE_FK
+        FOREIGN KEY (article)
+        REFERENCES Article(code),
+     CONSTRAINT QUANTITE_CK CHECK (quantite > 0)
 );
