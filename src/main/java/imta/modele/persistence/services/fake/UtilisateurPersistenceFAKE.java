@@ -4,6 +4,8 @@
  */
 package imta.modele.persistence.services.fake;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +28,10 @@ public class UtilisateurPersistenceFAKE extends GenericFakeService<UtilisateurEn
 		UtilisateurEntity entity = new UtilisateurEntity();
 		// Init fields with mock values
 		entity.setIdentifiant( nextString() ) ;
-		entity.setPassword( nextString() ) ;
+		try {
+			entity.setPassword( nextString() ) ;
+		} catch (Exception e) {}
+		
 		entity.setNom( nextString() ) ;
 		entity.setPrenom( nextString() ) ;
 		entity.setAdresse( nextString() ) ;

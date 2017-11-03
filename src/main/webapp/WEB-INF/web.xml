@@ -1,0 +1,39 @@
+<web-app>
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>imta.controllers.CatalogueServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>imta.controllers.LoginServlet</servlet-name>
+        <servlet-class>imta.controllers.LoginServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>imta.controllers.RegisterServlet</servlet-name>
+        <servlet-class>imta.controllers.RegisterServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>imta.controllers.HomeServlet</servlet-name>
+        <servlet-class>imta.controllers.HomeServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>imta.controllers.LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>imta.controllers.RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>imta.controllers.HomeServlet</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+</web-app>

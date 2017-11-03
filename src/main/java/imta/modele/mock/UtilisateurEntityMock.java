@@ -5,6 +5,8 @@
  */
 package imta.modele.mock;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,8 +20,10 @@ public class UtilisateurEntityMock {
 	/**
 	 * Creates an instance with random Primary Key
 	 * @return
+	 * @throws UnsupportedEncodingException 
+	 * @throws NoSuchAlgorithmException 
 	 */
-	public UtilisateurEntity createInstance() {
+	public UtilisateurEntity createInstance() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		// Primary Key values
 
 		return createInstance( mockValues.nextString(255) );
@@ -29,8 +33,10 @@ public class UtilisateurEntityMock {
 	 * Creates an instance with a specific Primary Key
 	 * @param id1
 	 * @return
+	 * @throws UnsupportedEncodingException 
+	 * @throws NoSuchAlgorithmException 
 	 */
-	public UtilisateurEntity createInstance( String identifiant ) {
+	public UtilisateurEntity createInstance( String identifiant ) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		UtilisateurEntity entity = new UtilisateurEntity();
 		// Init Primary Key fields
 		entity.setIdentifiant( identifiant) ;
@@ -51,8 +57,10 @@ public class UtilisateurEntityMock {
 	 * Creates a list of instances
 	 * @param count number of instances to be created
 	 * @return
+	 * @throws UnsupportedEncodingException 
+	 * @throws NoSuchAlgorithmException 
 	 */
-	public List<UtilisateurEntity> createList(int count) {
+	public List<UtilisateurEntity> createList(int count) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		List<UtilisateurEntity> list = new LinkedList<UtilisateurEntity>();		
 		for ( int i = 1 ; i <= count ; i++ ) {
 			list.add( createInstance() );

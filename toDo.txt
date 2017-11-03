@@ -1,0 +1,2 @@
+Notes :
+Diapositive 94 du cours sur les servlet : il faut que nos servlets communiquent comme dans la partie basse du schéma, et non pas comme dans la partie haute.

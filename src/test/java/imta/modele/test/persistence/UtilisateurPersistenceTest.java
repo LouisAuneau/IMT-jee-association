@@ -5,6 +5,9 @@
 package imta.modele.test.persistence;
 
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import imta.modele.bean.jpa.UtilisateurEntity;
 import imta.modele.mock.UtilisateurEntityMock;
 import imta.modele.persistence.PersistenceServiceProvider;
@@ -31,7 +34,7 @@ public class UtilisateurPersistenceTest
 	}
 	
 	@Test
-	public void test2() {
+	public void test2() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		
 		System.out.println("Test Utilisateur persistence : delete + load ..." );
 		
@@ -40,11 +43,11 @@ public class UtilisateurPersistenceTest
 		UtilisateurEntityMock mock = new UtilisateurEntityMock();
 		
 		// TODO : set primary key values here 
-		process( service, mock, "A"  );
+		process( service, mock, "A1"  );
 		// process( service, mock, ... );
 	}
 
-	private void process(UtilisateurPersistence service, UtilisateurEntityMock mock, String identifiant ) {
+	private void process(UtilisateurPersistence service, UtilisateurEntityMock mock, String identifiant ) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		System.out.println("----- "  );
 		System.out.println(" . load : " );
 		UtilisateurEntity entity = service.load( identifiant );
