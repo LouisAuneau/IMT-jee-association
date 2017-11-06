@@ -1,9 +1,6 @@
 package imta.controllers;
 
 import imta.modele.bean.jpa.UtilisateurEntity;
-import imta.modele.mock.UtilisateurEntityMock;
-import imta.modele.persistence.PersistenceServiceProvider;
-import imta.modele.persistence.services.UtilisateurPersistence;
 import imta.modele.persistence.services.jpa.UtilisateurPersistenceJPA;
 import imta.utils.CountryList;
 import imta.utils.SessionType;
@@ -47,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
         req.setAttribute("countryList", countryList);
 
         //Forward request
-        req.getRequestDispatcher("pages/register.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -123,7 +120,7 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("sessionType", SessionType.LOGGED_IN_SESSION); //Session type is logged-in
             session.setAttribute("registerSucceed", true);
             session.setAttribute("username", username);
-            resp.sendRedirect("hello");
+            resp.sendRedirect("home");
         }
         else {
             session.setAttribute("sessionType", SessionType.REGISTER_SESSION); //Session type is register

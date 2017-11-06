@@ -34,7 +34,7 @@ public class CatalogueServlet extends HttpServlet {
     	req.setAttribute("articles", this.articles);
     	
     	// Forward request
-        req.getRequestDispatcher("WEB-INF/catalogue.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/catalogue.jsp").forward(req, resp);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class CatalogueServlet extends HttpServlet {
     	req.setAttribute("articles", this.articles);
     	
     	// Forward request
-        req.getRequestDispatcher("WEB-INF/catalogue.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/catalogue.jsp").forward(req, resp);
     }
     
     private void loadArticles() {

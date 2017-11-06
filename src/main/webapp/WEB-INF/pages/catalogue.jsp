@@ -7,7 +7,7 @@
 </head>
 <body>
 	
-	<%@ include file="../WEB-INF/header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 
 	<div class="row" style="width: 90%; background-color: black;">
 		<!-- <div class="card" style="width: 20rem;">

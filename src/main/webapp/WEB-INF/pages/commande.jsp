@@ -7,6 +7,6 @@
 </head>
 <body>
 	
-	<%@ include file="../WEB-INF/header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 </body>
 </html>

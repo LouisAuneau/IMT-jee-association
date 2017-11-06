@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<%@ include file="../WEB-INF/header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 
     <!--Conteneur principal-->
     <div class="container">

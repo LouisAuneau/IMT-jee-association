@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         //Forward request
-        req.getRequestDispatcher("pages/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet {
         if(loginSuccess) {
             session.setAttribute("sessionType", SessionType.LOGGED_IN_SESSION); //Session type is login
             session.setAttribute("username", username);
-            resp.sendRedirect("hello");
+            resp.sendRedirect("home");
         }
         //If the connexion fails, forward the login page.
         else {
