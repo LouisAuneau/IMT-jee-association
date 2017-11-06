@@ -48,6 +48,16 @@
                 Erreur lors de la création de compte, les mots de passe ne correspondent pas.
             </div>
         </c:when>
+        <c:when test="${loginAlreadyUsed}">
+            <div class="alert alert-danger" role="alert">
+                Erreur lors de la création de compte, le nom de compte renseigné est déjà utilisé par un autre utilisateur.
+            </div>
+        </c:when>
+        <c:when test="${technicalError}">
+            <div class="alert alert-danger" role="alert">
+                Erreur lors de la création de compte, une erreur technique s'est produite.
+            </div>
+        </c:when>
     </c:choose>
 
     <!--Formulaire de connexion-->

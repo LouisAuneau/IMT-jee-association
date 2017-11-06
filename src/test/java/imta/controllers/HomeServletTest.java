@@ -2,7 +2,6 @@ package imta.controllers;
 
 import org.junit.Before;
 import org.junit.Test;
-import imta.controllers.HomeServlet;
 import imta.utils.MyHttpSessionMock;
 
 import javax.servlet.RequestDispatcher;

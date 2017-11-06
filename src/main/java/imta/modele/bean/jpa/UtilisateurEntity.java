@@ -6,6 +6,8 @@
 
 package imta.modele.bean.jpa;
 
+import sun.misc.BASE64Encoder;
+
 import java.io.Serializable;
 
 //import javax.validation.constraints.* ;
@@ -15,8 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
-import sun.misc.BASE64Encoder;
+import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -84,7 +85,20 @@ public class UtilisateurEntity implements Serializable {
     @Column(name="PAYS", length=255)
     private String     pays         ;
 
-
+    public UtilisateurEntity(String identifiant, String password, String nom, String prenom,
+                             String adresse, String city, String codePostal, String pays)
+            throws UnsupportedEncodingException, NoSuchAlgorithmException
+    {
+        this.identifiant = identifiant;
+        String encryptedPassword = this.encrypt(password);
+        this.password = encryptedPassword;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.city = city;
+        this.codePostal = codePostal;
+        this.pays = pays;
+    }
 
     //----------------------------------------------------------------------
     // ENTITY LINKS ( RELATIONSHIP )
@@ -212,14 +226,14 @@ public class UtilisateurEntity implements Serializable {
      */
     private String encrypt(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
     	MessageDigest md = null;
-    	md.getInstance(UtilisateurEntity.encryptionAlgorithm);
+    	md = MessageDigest.getInstance(UtilisateurEntity.encryptionAlgorithm);
     	md.update(password.getBytes(UtilisateurEntity.encryptionEncoding));
         byte rawByte[] = md.digest();
         String hashedPassword = (new BASE64Encoder()).encode(rawByte);
         
         return hashedPassword;
     }
-    
+
     /**
      * Vérifie qu'un mot de passe passé, une fois hashé correspond au mot de passe hashé en base de données.
      * @param String passwordToCheck - le mot de passe à vérifier.
@@ -228,6 +242,6 @@ public class UtilisateurEntity implements Serializable {
      * @throws UnsupportedEncodingException
      */
     public boolean checkPassword(String passwordToCheck) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-    	return this.encrypt(passwordToCheck) == this.password;
+    	return Objects.equals(this.encrypt(passwordToCheck), this.password);
     }
 }
