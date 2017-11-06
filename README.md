@@ -27,7 +27,7 @@ Class Name  : org.apache.derby.jdbc.ClientDriver
 Name        : jee-association
 Driver      : Derby driver
 URL         : jdbc:derby://localhost:1527/jee-association
-Username    : LOGIN
+Username    : ADMIN
 Password    : PASSWORD
 ```
 

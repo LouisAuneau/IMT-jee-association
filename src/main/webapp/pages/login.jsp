@@ -6,6 +6,9 @@
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
 </head>
 <body>
+
+	<%@ include file="../WEB-INF/header.jsp" %>
+
     <!--Conteneur principal-->
     <div class="container">
 
