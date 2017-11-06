@@ -1,5 +1,7 @@
 package imta.controllers;
 
+import imta.modele.bean.jpa.UtilisateurEntity;
+import imta.modele.persistence.services.jpa.UtilisateurPersistenceJPA;
 import imta.utils.SessionType;
 
 import javax.servlet.ServletException;
@@ -8,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Objects;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Servlet that manage login page
@@ -73,6 +76,8 @@ public class LoginServlet extends HttpServlet {
 
         //If the connexion success, redirect to home page
         if(loginSuccess) {
+            session.setAttribute("sessionType", SessionType.LOGGED_IN_SESSION); //Session type is login
+            session.setAttribute("username", username);
             resp.sendRedirect("hello");
         }
         //If the connexion fails, forward the login page.
@@ -85,8 +90,16 @@ public class LoginServlet extends HttpServlet {
     }
 
     private boolean checkConnexion(String username, String password) {
-        //TODO real connexion
-        return Objects.equals(username, "mguyot") && Objects.equals(password, "1234");
+        UtilisateurPersistenceJPA userDao = new UtilisateurPersistenceJPA();
+        UtilisateurEntity user = userDao.load(username);
+        try {
+            if(user != null && user.checkPassword(password)) {
+                return true;
+            }
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            return false;
+        }
+        return false;
     }
 
 }

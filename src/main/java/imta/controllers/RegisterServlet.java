@@ -1,5 +1,10 @@
 package imta.controllers;
 
+import imta.modele.bean.jpa.UtilisateurEntity;
+import imta.modele.mock.UtilisateurEntityMock;
+import imta.modele.persistence.PersistenceServiceProvider;
+import imta.modele.persistence.services.UtilisateurPersistence;
+import imta.modele.persistence.services.jpa.UtilisateurPersistenceJPA;
 import imta.utils.CountryList;
 import imta.utils.SessionType;
 
@@ -9,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -94,14 +100,30 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("noPasswordMatch", true);
         }
         else {
-            //TODO register user !!
-            registerSuccess = true;
+            UtilisateurPersistenceJPA userDao = new UtilisateurPersistenceJPA();
+            UtilisateurEntity user = userDao.load(username);
+            //If the username is already used
+            if(user != null) {
+                session.setAttribute("loginAlreadyUsed", true);
+            }
+            //Else, register the user
+            else {
+                try {
+                    user = new UtilisateurEntity(username, password, firstName,
+                                                 secondName, address, city, postalCode, country);
+                    userDao.insert(user);
+                    registerSuccess = true;
+                } catch (NoSuchAlgorithmException e) {
+                    session.setAttribute("technicalError", true);
+                }
+            }
         }
 
         if(registerSuccess) {
-            session.setAttribute("sessionType", SessionType.LOGIN_SESSION); //Session type is login
-            session.setAttribute("registerSucceed", true); //Session type is login
-            resp.sendRedirect("login");
+            session.setAttribute("sessionType", SessionType.LOGGED_IN_SESSION); //Session type is logged-in
+            session.setAttribute("registerSucceed", true);
+            session.setAttribute("username", username);
+            resp.sendRedirect("hello");
         }
         else {
             session.setAttribute("sessionType", SessionType.REGISTER_SESSION); //Session type is register

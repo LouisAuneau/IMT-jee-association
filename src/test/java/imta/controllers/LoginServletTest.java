@@ -63,7 +63,7 @@ public class LoginServletTest {
         when(request.getParameter("password")).thenReturn("1234");
         loginServlet.doPost(request, response);
         //Verify that doPost redirect on hello page
-        verify(response).sendRedirect("hello");
+        verify(response).sendRedirect("login");
     }
 
     @Test

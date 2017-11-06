@@ -69,10 +69,11 @@ public class RegisterServletTest {
         when(request.getParameter("firstName")).thenReturn("mike");
         when(request.getParameter("secondName")).thenReturn("mikel");
         registerServlet.doPost(request, response);
-        assertEquals(SessionType.LOGIN_SESSION, request.getSession().getAttribute("sessionType"));
+        assertEquals(SessionType.LOGGED_IN_SESSION, request.getSession().getAttribute("sessionType"));
         assertEquals(true, request.getSession().getAttribute("registerSucceed"));
+        assertEquals("testUser", request.getSession().getAttribute("username"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("login");
+        verify(response).sendRedirect("hello");
     }
 
     @Test
