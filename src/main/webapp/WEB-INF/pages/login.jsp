@@ -1,12 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Jee-association</title>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-</head>
 <body>
 
+    <!--Include header (navbar + head)-->
 	<%@ include file="../common/header.jsp" %>
 
     <!--Conteneur principal-->
@@ -58,5 +55,6 @@
         </div>
 
     </div>
+
 </body>
 </html>
