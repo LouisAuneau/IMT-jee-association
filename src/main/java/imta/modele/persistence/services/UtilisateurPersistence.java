@@ -95,5 +95,5 @@ public interface UtilisateurPersistence {
 	 * Delete all the occurrences
 	 * @return
 	 */
-	public long deleteAll();
+	public void deleteAll();
 }

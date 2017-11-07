@@ -69,10 +69,10 @@ public class ArticlePersistenceJPA extends GenericJpaService<ArticleEntity, Stri
 			@Override
 			public Object exectue(EntityManager em) throws PersistenceException {
 				Query query = em.createNamedQuery("ArticleEntity.deleteAll");
-				return query.getSingleResult() ;
+				return query.executeUpdate();
 			}
 		} ;
 		// JPA operation execution 
-		execute(operation);
+		execute(operation, true);
 	}
 }

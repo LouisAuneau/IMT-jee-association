@@ -5,13 +5,21 @@
 package imta.modele.test.persistence;
 
 
+import static org.junit.Assert.assertEquals;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import imta.modele.bean.jpa.AchatEntity;
 import imta.modele.bean.jpa.ArticleEntity;
+import imta.modele.bean.jpa.UtilisateurEntity;
 import imta.modele.mock.AchatEntityMock;
 import imta.modele.mock.ArticleEntityMock;
 import imta.modele.mock.UtilisateurEntityMock;
 import imta.modele.persistence.PersistenceServiceProvider;
 import imta.modele.persistence.services.AchatPersistence;
+import imta.modele.persistence.services.ArticlePersistence;
+import imta.modele.persistence.services.UtilisateurPersistence;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,14 +33,38 @@ import org.junit.Test;
 public class AchatPersistenceTest 
 {	
 	@Test
-	public void testDeleteAll() {
+	public void testDeleteByUser() throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		UtilisateurPersistence serviceUtilisateur = PersistenceServiceProvider.getService(UtilisateurPersistence.class);
+		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
+		AchatPersistence serviceAchat =  PersistenceServiceProvider.getService(AchatPersistence.class);
 		
-		System.out.println("Test deleteAll ..." );
+		serviceUtilisateur.deleteAll();
+		serviceArticle.deleteAll();
+		serviceAchat.deleteAll();
 		
+		UtilisateurEntity utilisateur = new UtilisateurEntity("test", "password", "nom", "prenom", "addresse", "city", "zipcode", "pays");
+		serviceUtilisateur.insert(utilisateur);
+		ArticleEntity article = new ArticleEntity();
+		article.setCode("A1");
+		article.setDescription("test");
+		article.setNom("nom test");
+		article.setPrix(1.0f);
+		article.setQuantite(10);
+		serviceArticle.insert(article);
+
+		AchatEntity achat = new AchatEntity();
+		achat.setArticle2(article);
+		achat.setUtilisateur2(utilisateur);
+		achat.setQuantite(1);
+		serviceAchat.insert(achat);
 		
-		AchatPersistence service = PersistenceServiceProvider.getService(AchatPersistence.class);
-		System.out.println("CountAll = " + service.countAll() );
+		assertEquals(serviceAchat.countAll(), 1l);
+		
+		serviceAchat.deleteByUser("test");
+		
+		assertEquals(serviceAchat.countAll(), 0l);
 	}
+	
 	
 	@Test
 	public void test1() {
