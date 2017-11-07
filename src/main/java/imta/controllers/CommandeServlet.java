@@ -28,14 +28,6 @@ public class CommandeServlet extends AssociationServlet {
         System.out.println("Initializing imta.controllers.CommandeServlet");
     }
 	
-//    /**
-//     * @see HttpServlet#HttpServlet()
-//     */
-//    public CommandeServlet() {
-//        super();
-//        // TODO Auto-generated constructor stub
-//    }
-
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -60,11 +52,6 @@ public class CommandeServlet extends AssociationServlet {
     	// first checks
     	super.doPost(request, response);
     	
-//    	this.loadAchats();
-//    	request.setAttribute("articles", this.achats);
-//    	
-//    	// Forward request
-//        request.getRequestDispatcher("WEB-INF/pages/catalogue.jsp").forward(request, response);
 	}
 
     private void loadAchats(String username) {
@@ -78,7 +65,5 @@ public class CommandeServlet extends AssociationServlet {
     	
     	this.achaPers = new AchatPersistenceJPA();
     	this.achats = achaPers.loadByUser(username);
-//    	this.achats.clear();
-//    	this.achats = achaPers.loadAll();
     }
 }

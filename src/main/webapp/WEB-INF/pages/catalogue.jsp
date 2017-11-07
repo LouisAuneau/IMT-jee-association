@@ -6,7 +6,8 @@
 	<!--Include header (navbar + head)-->
 	<%@ include file="../common/header.jsp" %>
 
-	<div class="row" style="width: 90%; background-color: black;">
+	<div class="container">
+	<div class="row" style="background-color: white;">
 		<c:forEach var="article" begin="0" items="${requestScope['articles']}">
 			<div class="col-sm-4">
 				<div class="card" style="margin: 10px;">
@@ -25,6 +26,7 @@
 				</div>
 			</div>
 		</c:forEach>
+	</div>
 	</div>
 	
 </body>

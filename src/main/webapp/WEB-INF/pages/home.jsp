@@ -10,13 +10,13 @@
 
         <h1>Accueil</h1>
 
-        <p>Bienvenu sur votre espace personnel ! <br/>
+        <p>Bienvenue sur votre espace personnel ! <br/>
             Vous pouvez :
         </p>
 
-		<a href="catalogue">Consulter les articles disponibles</a><br/>
-		<a href="commande">Consulter les articles disponibles</a><br/>
-        <a href="#">Se déconnecter</a><br/>
+		<a href="catalogue">Consulter les articles que vous propose Associ'active</a><br/>
+		<a href="commande">Consulter vos commandes</a><br/>
+        <a href="#">Vous déconnecter</a><br/>
 	</div>
 
 </body>
