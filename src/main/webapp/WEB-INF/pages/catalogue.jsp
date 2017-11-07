@@ -19,7 +19,9 @@
     					<h6 class="card-subtitle mb-2 text-muted">Prix  : ${article.prix} €</h6>
     					<p class="card-text">${article.description}</p>
     					<form action="catalogue" method="post">
-    						<input type="number" min="0" max="${article.quantite}" value="1" required>
+    						<input type="hidden" name="id" value="${article.code}">
+    						<input type="hidden" name="stock" value="${article.quantite}">
+    						<input type="number" name="quantiteComm" min="0" max="${article.quantite}" value="1" required>
     						<button  class="btn btn-primary" type="submit">Commander</button>
     					</form>
   					</div>
