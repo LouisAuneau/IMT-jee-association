@@ -1,4 +1,5 @@
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <servlet>
     <servlet-name>imta.controllers.CatalogueServlet</servlet-name>
     <servlet-class>imta.controllers.CatalogueServlet</servlet-class>
@@ -17,6 +18,11 @@
   <servlet>
     <servlet-name>imta.controllers.HomeServlet</servlet-name>
     <servlet-class>imta.controllers.HomeServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>imta.controllers.CommandeServlet</servlet-name>
+    <servlet-class>imta.controllers.CommandeServlet</servlet-class>
     <load-on-startup>0</load-on-startup>
   </servlet>
   <servlet-mapping>
@@ -38,5 +44,9 @@
   <servlet-mapping>
     <servlet-name>imta.controllers.CatalogueServlet</servlet-name>
     <url-pattern>/catalogue</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>imta.controllers.CommandeServlet</servlet-name>
+    <url-pattern>/commande</url-pattern>
   </servlet-mapping>
 </web-app>

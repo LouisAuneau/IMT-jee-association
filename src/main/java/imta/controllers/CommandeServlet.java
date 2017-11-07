@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import imta.modele.bean.jpa.AchatEntity;
 import imta.modele.persistence.services.AchatPersistence;
@@ -17,8 +17,7 @@ import imta.modele.persistence.services.jpa.AchatPersistenceJPA;
 /**
  * Servlet implementation class CommandeServlet
  */
-@WebServlet("/CommandeServlet")
-public class CommandeServlet extends HttpServlet {
+public class CommandeServlet extends AssociationServlet {
 	private static final long serialVersionUID = 1L;
     
 	private List<AchatEntity> achats;
@@ -40,24 +39,35 @@ public class CommandeServlet extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-    	this.loadArticles();
-    	request.setAttribute("articles", this.achats);
+    	
+    	// first checks
+    	super.doGet(request,response);
+    	
+    	HttpSession session = request.getSession();
+    	String username = (String) session.getAttribute("username");
+    	
+    	this.loadAchats(username);
+    	request.setAttribute("achats", this.achats);
     	
     	// Forward request
-        request.getRequestDispatcher("WEB-INF/pages/catalogue.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/pages/commande.jsp").forward(request, response);
 	}
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-    	this.loadArticles();
-    	request.setAttribute("articles", this.achats);
     	
-    	// Forward request
-        request.getRequestDispatcher("WEB-INF/pages/catalogue.jsp").forward(request, response);
+    	// first checks
+    	super.doPost(request, response);
+    	
+//    	this.loadAchats();
+//    	request.setAttribute("articles", this.achats);
+//    	
+//    	// Forward request
+//        request.getRequestDispatcher("WEB-INF/pages/catalogue.jsp").forward(request, response);
 	}
 
-    private void loadArticles() {
+    private void loadAchats(String username) {
     	
     	if (achats == null) {
     		achats = new ArrayList<>();
@@ -67,6 +77,8 @@ public class CommandeServlet extends HttpServlet {
     	}
     	
     	this.achaPers = new AchatPersistenceJPA();
-    	this.achats = achaPers.loadByNamedQuery("");
+    	this.achats = achaPers.loadByUser(username);
+//    	this.achats.clear();
+//    	this.achats = achaPers.loadAll();
     }
 }

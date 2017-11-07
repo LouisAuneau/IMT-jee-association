@@ -30,6 +30,14 @@ public class CatalogueServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
+    	// check if an user is logged
+    	if(req.getSession() == null
+    			|| req.getSession().getAttribute("sessionType") != SessionType.LOGGED_IN_SESSION)
+    	{
+    		resp.sendRedirect("login");
+    		return;
+    	}    	
+    	
     	this.loadArticles();
     	req.setAttribute("articles", this.articles);
     	

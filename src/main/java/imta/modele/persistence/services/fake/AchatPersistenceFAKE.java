@@ -80,4 +80,10 @@ public class AchatPersistenceFAKE extends GenericFakeService<AchatEntity> implem
 		return 0 ;
 	}
 
+	@Override
+	public List<AchatEntity> loadByUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -91,4 +91,10 @@ public interface AchatPersistence {
 	 */
 	public long countAll();
 	
+	/**
+	 * Load the AchatEntity occurences of a user
+	 * @param username of the user
+	 * @return
+	 */
+	public List<AchatEntity> loadByUser(String username);
 }

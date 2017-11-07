@@ -10,17 +10,6 @@
 	<%@ include file="../common/header.jsp" %>
 
 	<div class="row" style="width: 90%; background-color: black;">
-		<!-- <div class="card" style="width: 20rem;">
-  			<div class="card-body">
-    			<h4 class="card-title">Batte de baseball</h4>
-    			<h6 class="card-subtitle mb-2 text-muted">Stock : 18 unités</h6>
-    			<h6 class="card-subtitle mb-2 text-muted">Prix  : 51.00 €</h6>
-    			<p class="card-text">Avec cette batte magique, vous allez exploser tous les records !</p>
-    			<input type="number" name="howmuch">
-    			<a href="#" class="card-link">Commander</a>
-  			</div>
-		</div> -->
-		
 		<c:forEach var="article" begin="0" items="${requestScope['articles']}">
 			<div class="col-sm-4">
 				<div class="card" style="margin: 10px;">
@@ -33,7 +22,6 @@
     						<input type="number" min="0" max="${article.quantite}" value="1" required>
     						<button  class="btn btn-primary" type="submit">Commander</button>
     					</form>
-    					<!-- <a href="#" class="card-link">Commander</a> -->
   					</div>
 				</div>
 			</div>
