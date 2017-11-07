@@ -10,13 +10,13 @@
 
         <h1>Accueil</h1>
 
-        <p>Bienvenu sur votre espace personnel ! <br/>
+        <p>Bienvenue sur votre espace personnel ! <br/>
             Vous pouvez :
         </p>
 
-		<a href="<%=Routes.CATALOG.getRoutePath()%>">Consulter les articles disponibles</a><br/>
-		<a href="<%=Routes.COMMAND.getRoutePath()%>">Consulter les articles disponibles</a><br/>
-        <a href="#">Se déconnecter</a><br/>
+		<a href="<%=Routes.CATALOG.getRoutePath()%>">Consulter les articles que vous propose Associ'active</a><br/>
+		<a href="<%=Routes.COMMAND.getRoutePath()%>">Consulter vos commandes</a><br/>
+        <a href="<%=Routes.LOGOUT.getRoutePath()%>">Vous déconnecter</a><br/>
 	</div>
 
 </body>
