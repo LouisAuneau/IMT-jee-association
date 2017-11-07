@@ -12,6 +12,7 @@ import java.io.Serializable;
 //import org.hibernate.validator.constraints.* ;
 
 
+
 import javax.persistence.*;
 
 /**
@@ -23,9 +24,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="ACHAT", schema="ADMIN" )
-// Define named queries here
 @NamedQueries ( {
   @NamedQuery ( name="AchatEntity.countAll", query="SELECT COUNT(x) FROM AchatEntity x" ),
+  @NamedQuery ( name="AchatEntity.deleteAll", query="DELETE FROM AchatEntity CASCADE" ),
   @NamedQuery ( name="AchatEntity.loadByUser", query="SELECT X FROM AchatEntity X where X.utilisateur2.identifiant = :username" )
 } )
 public class AchatEntity implements Serializable {

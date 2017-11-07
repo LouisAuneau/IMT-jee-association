@@ -22,7 +22,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="ARTICLE", schema="ADMIN" )
 @NamedQueries ( {
-  @NamedQuery ( name="ArticleEntity.countAll", query="SELECT COUNT(x) FROM ArticleEntity x" )
+  @NamedQuery ( name="ArticleEntity.countAll", query="SELECT COUNT(x) FROM ArticleEntity x" ),
+  @NamedQuery ( name="ArticleEntity.deleteAll", query="DELETE FROM ArticleEntity CASCADE" )
 } )
 public class ArticleEntity implements Serializable {
 

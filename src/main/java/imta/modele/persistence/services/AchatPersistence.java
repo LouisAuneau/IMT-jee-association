@@ -86,13 +86,18 @@ public interface AchatPersistence {
 	public List<AchatEntity> search( Map<String, Object> criteria ) ;
 
 	/**
-	 * Count all the occurrences
+	 * Count all the occurrences.
 	 * @return
 	 */
 	public long countAll();
 	
 	/**
-	 * Load the AchatEntity occurences of a user
+	 * Delete all occurrences.
+	 */
+	public void deleteAll();
+	
+	/**
+	 * Load the AchatEntity occurrences of a user
 	 * @param username of the user
 	 * @return
 	 */

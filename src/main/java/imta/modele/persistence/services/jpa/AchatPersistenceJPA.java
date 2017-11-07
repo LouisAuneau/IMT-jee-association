@@ -65,6 +65,19 @@ public class AchatPersistenceJPA extends GenericJpaService<AchatEntity, Integer>
 	}
 
 	@Override
+	public void deleteAll() {
+		// JPA operation definition 
+		JpaOperation operation = new JpaOperation() {
+			@Override
+			public Object exectue(EntityManager em) throws PersistenceException {
+				Query query = em.createNamedQuery("AchatEntity.deleteAll");
+				return query.getSingleResult() ;
+			}
+		} ;
+	}
+		
+		
+	@Override
 	public List<AchatEntity> loadByUser(final String username) {
 		
 		// JPA operation definition 

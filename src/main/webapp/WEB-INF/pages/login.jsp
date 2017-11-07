@@ -29,11 +29,6 @@
                     Erreur lors de la connexion, les informations fournies ne permettent pas de vous identifier.
                 </div>
             </c:when>
-            <c:when test="${registerSucceed}">
-                <div class="alert alert-success" role="alert">
-                    Votre compte a bien été créé ! Vous pouvez dès à présent vous connecter.
-                </div>
-            </c:when>
         </c:choose>
 
         <!--Formulaire de connexion-->
