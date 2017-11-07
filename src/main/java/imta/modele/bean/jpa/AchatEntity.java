@@ -13,6 +13,8 @@ import java.io.Serializable;
 
 
 
+
+
 import javax.persistence.*;
 
 /**
@@ -26,8 +28,9 @@ import javax.persistence.*;
 @Table(name="ACHAT", schema="ADMIN" )
 @NamedQueries ( {
   @NamedQuery ( name="AchatEntity.countAll", query="SELECT COUNT(x) FROM AchatEntity x" ),
-  @NamedQuery ( name="AchatEntity.deleteAll", query="DELETE FROM AchatEntity CASCADE" ),
-  @NamedQuery ( name="AchatEntity.loadByUser", query="SELECT X FROM AchatEntity X where X.utilisateur2.identifiant = :username" )
+  @NamedQuery ( name="AchatEntity.deleteAll", query="DELETE FROM AchatEntity" ),
+  @NamedQuery ( name="AchatEntity.loadByUser", query="SELECT X FROM AchatEntity X where X.utilisateur2.identifiant = :username" ),
+  @NamedQuery ( name="AchatEntity.deleteByUser", query="DELETE FROM AchatEntity X where X.utilisateur2.identifiant = :username" )
 } )
 public class AchatEntity implements Serializable {
 
