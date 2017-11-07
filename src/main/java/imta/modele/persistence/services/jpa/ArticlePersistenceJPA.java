@@ -64,7 +64,8 @@ public class ArticlePersistenceJPA extends GenericJpaService<ArticleEntity, Stri
 
 	@Override
 	public void deleteAll() {
-		// JPA operation definition 
+
+		// JPA operation definition
 		JpaOperation operation = new JpaOperation() {
 			@Override
 			public Object exectue(EntityManager em) throws PersistenceException {
@@ -72,7 +73,9 @@ public class ArticlePersistenceJPA extends GenericJpaService<ArticleEntity, Stri
 				return query.getSingleResult() ;
 			}
 		} ;
+
 		// JPA operation execution 
 		execute(operation);
 	}
 }
+

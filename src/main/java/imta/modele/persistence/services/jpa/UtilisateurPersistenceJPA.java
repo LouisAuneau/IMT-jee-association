@@ -63,7 +63,8 @@ public class UtilisateurPersistenceJPA extends GenericJpaService<UtilisateurEnti
 	}
 
 	@Override
-	public long deleteAll() {
+	public void deleteAll() {
+
 		// JPA operation definition 
 		JpaOperation operation = new JpaOperation() {
 			@Override
@@ -72,6 +73,7 @@ public class UtilisateurPersistenceJPA extends GenericJpaService<UtilisateurEnti
 				return query.getSingleResult() ;
 			}
 		} ;
+
 		// JPA operation execution 
 		execute(operation);
 	}

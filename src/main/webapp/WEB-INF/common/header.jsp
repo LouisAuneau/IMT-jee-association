@@ -7,13 +7,20 @@
     <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="../../css/bootstrap-grid.min.css" />
     <link type="text/css" rel="stylesheet" href="../../css/bootstrap-reboot.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin-bottom: 40px">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
             <span class="navbar-toggler-icon"></span>
         </button>
   		<a class="navbar-brand" href="home">Associ'active</a>
@@ -39,14 +46,14 @@
                         </c:choose>
 
                         <c:choose>
-                            <c:when test="${requestScope['javax.servlet.forward.request_uri'] != '/catolgue'}">
+                            <c:when test="${requestScope['javax.servlet.forward.request_uri'] != '/catalogue'}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="catologue">Catalogue </a>
+                                    <a class="nav-link" href="catalogue">Catalogue </a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="catologue">Catalogue <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="catalogue">Catalogue <span class="sr-only">(current)</span></a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
