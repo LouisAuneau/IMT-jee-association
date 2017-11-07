@@ -1,8 +1,13 @@
 package imta.controllers;
 
+import imta.modele.persistence.services.AchatPersistence;
+import imta.modele.persistence.services.jpa.AchatPersistenceJPA;
+import imta.modele.persistence.services.jpa.UtilisateurPersistenceJPA;
+import imta.utils.Routes;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import imta.controllers.RegisterServlet;
 import imta.utils.MyHttpSessionMock;
 import imta.utils.SessionType;
 
@@ -25,6 +30,20 @@ public class RegisterServletTest {
     private HttpSession session;
     private RegisterServlet registerServlet;
 
+    @BeforeClass
+    public static void beforeClass() {
+        AchatPersistenceJPA achatDao = new AchatPersistenceJPA();
+        achatDao.deleteAll();
+        UtilisateurPersistenceJPA userDao = new UtilisateurPersistenceJPA();
+        userDao.deleteAll();
+    }
+
+    @AfterClass
+    public static void afterClass() {
+        UtilisateurPersistenceJPA userDao = new UtilisateurPersistenceJPA();
+        userDao.deleteAll();
+    }
+
     @Before
     public void setUp() {
         request = mock(HttpServletRequest.class);
@@ -44,7 +63,7 @@ public class RegisterServletTest {
         //Check that the session is deleted
         assertEquals(null, session.getAttribute("sessionType"));
         //Check that the doGet method forward on pages/register.jsp
-        verify(request).getRequestDispatcher("pages/register.jsp");
+        verify(request).getRequestDispatcher("WEB-INF/pages/register.jsp");
     }
 
     @Test
@@ -54,7 +73,7 @@ public class RegisterServletTest {
         //Check that the session is not deleted
         assertEquals(SessionType.REGISTER_SESSION, session.getAttribute("sessionType"));
         //Check that the doGet method forward on pages/register.jsp
-        verify(request).getRequestDispatcher("pages/register.jsp");
+        verify(request).getRequestDispatcher("WEB-INF/pages/register.jsp");
     }
 
     public void doPostTestOkAddressGiven() throws Exception {
@@ -70,10 +89,9 @@ public class RegisterServletTest {
         when(request.getParameter("secondName")).thenReturn("mikel");
         registerServlet.doPost(request, response);
         assertEquals(SessionType.LOGGED_IN_SESSION, request.getSession().getAttribute("sessionType"));
-        assertEquals(true, request.getSession().getAttribute("registerSucceed"));
         assertEquals("testUser", request.getSession().getAttribute("username"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("hello");
+        verify(response).sendRedirect(Routes.HOME.getRoutePath());
     }
 
     @Test
@@ -81,7 +99,7 @@ public class RegisterServletTest {
         registerServlet.doPost(request, response);
         assertEquals(true, request.getSession().getAttribute("noUsernameGiven"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("register");
+        verify(response).sendRedirect(Routes.REGISTER.getRoutePath());
     }
 
     @Test
@@ -90,7 +108,7 @@ public class RegisterServletTest {
         registerServlet.doPost(request, response);
         assertEquals(true, request.getSession().getAttribute("noPasswordGiven"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("register");
+        verify(response).sendRedirect(Routes.REGISTER.getRoutePath());
     }
 
     @Test
@@ -100,7 +118,7 @@ public class RegisterServletTest {
         registerServlet.doPost(request, response);
         assertEquals(true, request.getSession().getAttribute("noPassword2Given"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("register");
+        verify(response).sendRedirect(Routes.REGISTER.getRoutePath());
     }
 
     @Test
@@ -112,7 +130,7 @@ public class RegisterServletTest {
         registerServlet.doPost(request, response);
         assertEquals(true, request.getSession().getAttribute("noFirstNameGiven"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("register");
+        verify(response).sendRedirect(Routes.REGISTER.getRoutePath());
     }
 
     @Test
@@ -124,7 +142,7 @@ public class RegisterServletTest {
         registerServlet.doPost(request, response);
         assertEquals(true, request.getSession().getAttribute("noSecondNameGiven"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("register");
+        verify(response).sendRedirect(Routes.REGISTER.getRoutePath());
     }
 
     @Test
@@ -137,7 +155,7 @@ public class RegisterServletTest {
         registerServlet.doPost(request, response);
         assertEquals(true, request.getSession().getAttribute("noPasswordMatch"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("register");
+        verify(response).sendRedirect(Routes.REGISTER.getRoutePath());
     }
 
     public void doPostTestFailsPartialAddressGiven() throws Exception {

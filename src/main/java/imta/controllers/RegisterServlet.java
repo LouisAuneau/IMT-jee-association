@@ -3,10 +3,10 @@ package imta.controllers;
 import imta.modele.bean.jpa.UtilisateurEntity;
 import imta.modele.persistence.services.jpa.UtilisateurPersistenceJPA;
 import imta.utils.CountryList;
+import imta.utils.Routes;
 import imta.utils.SessionType;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Servlet that manage register page
  */
-public class RegisterServlet extends HttpServlet {
+public class RegisterServlet extends HttpSecureServlet {
 
     @Override
     public void init() throws ServletException {
@@ -28,6 +28,11 @@ public class RegisterServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
+        //We can access register services only if we are not logged in
+        if(!verifyNotLogged(req)) {
+            resp.sendRedirect(Routes.HOME.getRoutePath());
+            return;
+        }
         //Set encoding of request and response
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
@@ -51,6 +56,11 @@ public class RegisterServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
+        //We can access register services only if we are not logged in
+        if(!verifyNotLogged(req)) {
+            resp.sendRedirect(Routes.HOME.getRoutePath());
+            return;
+        }
         //Set encoding of request and response
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
@@ -120,7 +130,7 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("sessionType", SessionType.LOGGED_IN_SESSION); //Session type is logged-in
             session.setAttribute("registerSucceed", true);
             session.setAttribute("username", username);
-            resp.sendRedirect("home");
+            resp.sendRedirect(Routes.HOME.getRoutePath());
         }
         else {
             session.setAttribute("sessionType", SessionType.REGISTER_SESSION); //Session type is register
@@ -132,7 +142,7 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("postalCode", postalCode);
             session.setAttribute("city", city);
             session.setAttribute("country", country);
-            resp.sendRedirect("register");
+            resp.sendRedirect(Routes.REGISTER.getRoutePath());
         }
     }
 

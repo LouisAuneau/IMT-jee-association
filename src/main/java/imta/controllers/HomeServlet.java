@@ -1,17 +1,18 @@
 package imta.controllers;
 
+import imta.utils.SessionType;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import imta.utils.SessionType;
 
 /**
  * Servlet that manage home (/) redirection
  */
-public class HomeServlet  extends AssociationServlet {
+public class HomeServlet  extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
@@ -22,9 +23,17 @@ public class HomeServlet  extends AssociationServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-    	super.doGet(req, resp);
-    	
-    	req.getRequestDispatcher("WEB-INF/pages/home.jsp").forward(req, resp);
+        if(req.getSession() != null
+                && req.getSession().getAttribute("sessionType") == SessionType.LOGGED_IN_SESSION)
+        {
+            req.getRequestDispatcher("WEB-INF/pages/home.jsp").forward(req, resp);
+        } else {
+            //Invalidate old session
+            if(req.getSession() != null) {
+                req.getSession(false).invalidate();
+            }
+            req.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(req, resp);
+        }
     }
 
 }

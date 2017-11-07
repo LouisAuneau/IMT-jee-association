@@ -2,10 +2,10 @@ package imta.controllers;
 
 import imta.modele.bean.jpa.UtilisateurEntity;
 import imta.modele.persistence.services.jpa.UtilisateurPersistenceJPA;
+import imta.utils.Routes;
 import imta.utils.SessionType;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Servlet that manage login page
  */
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends HttpSecureServlet {
 
     @Override
     public void init() throws ServletException {
@@ -27,7 +27,12 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-        //Set encoding of request and response
+        //We can access login services only if we are not logged in
+        if(!verifyNotLogged(req)) {
+            resp.sendRedirect(Routes.HOME.getRoutePath());
+            return;
+        }
+         //Set encoding of request and response
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
@@ -46,6 +51,11 @@ public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
+        //We can access login services only if we are not logged in
+        if(!verifyNotLogged(req)) {
+            resp.sendRedirect(Routes.HOME.getRoutePath());
+            return;
+        }
         //Set encoding of request and response
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
@@ -78,14 +88,14 @@ public class LoginServlet extends HttpServlet {
         if(loginSuccess) {
             session.setAttribute("sessionType", SessionType.LOGGED_IN_SESSION); //Session type is login
             session.setAttribute("username", username);
-            resp.sendRedirect("home");
+            resp.sendRedirect(Routes.HOME.getRoutePath());
         }
         //If the connexion fails, forward the login page.
         else {
             //Save user input in request in case of forward on login page
             session.setAttribute("username", username);
             session.setAttribute("connexionFails",true);
-            resp.sendRedirect("login");
+            resp.sendRedirect(Routes.LOGIN.getRoutePath());
         }
     }
 

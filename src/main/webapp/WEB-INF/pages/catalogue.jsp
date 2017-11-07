@@ -7,6 +7,21 @@
 	<%@ include file="../common/header.jsp" %>
 
 	<div class="container">
+	
+	<h1 style="margin-bottom: 1em;">${requestScope['header']}</h1>
+
+    <!--Affichage des messages d'erreurs-->
+    <c:choose>
+        <c:when test="${requestScope['isNotEnougthProducts'] == true}">
+            <div class="alert alert-danger" role="alert">
+                Erreur lors de votre commande, la quantité demandée n'est plus disponible.
+            </div>
+        </c:when>
+    </c:choose>
+
+	<c:choose>
+	<c:when test="${requestScope['catalogueVide'] == false}">
+	
 	<div class="row" style="background-color: white;">
 		<c:forEach var="article" begin="0" items="${requestScope['articles']}">
 			<div class="col-sm-4">
@@ -16,17 +31,30 @@
     					<h6 class="card-subtitle mb-2 text-muted">Stock : ${article.quantite}</h6>
     					<h6 class="card-subtitle mb-2 text-muted">Prix  : ${article.prix} €</h6>
     					<p class="card-text">${article.description}</p>
-    					<form action="catalogue" method="post">
-    						<input type="hidden" name="id" value="${article.code}">
-    						<input type="hidden" name="stock" value="${article.quantite}">
-    						<input type="number" name="quantiteComm" min="0" max="${article.quantite}" value="1" required>
-    						<button  class="btn btn-primary" type="submit">Commander</button>
-    					</form>
+    					
+    					<c:choose>
+    					<c:when test="${article.quantite > 0}">
+    						<form action="catalogue" method="post">
+    							<input type="hidden" name="id" value="${article.code}">
+    							<label>Quantité </label>
+    							<input type="number" name="quantiteComm" min="1" max="${article.quantite}" value="1" required>
+    							<button  class="btn btn-primary" type="submit">Commander</button>
+    						</form>
+    					</c:when>
+    					<c:otherwise>
+    						<p class="card-text" style="color: red;">Stock épuisé !</p>
+    					</c:otherwise>
+    					</c:choose>
+    					
   					</div>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
+	
+	</c:when>
+	</c:choose>
+	
 	</div>
 	
 </body>

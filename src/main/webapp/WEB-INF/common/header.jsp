@@ -76,7 +76,8 @@
                     <c:otherwise>
 
                         <c:choose>
-                            <c:when test="${requestScope['javax.servlet.forward.request_uri'] != '/login'}">
+                            <c:when test="${requestScope['javax.servlet.forward.request_uri'] != '/login'
+                                                && requestScope['javax.servlet.forward.request_uri'] != '/home'}">
                                 <li class="nav-item">
                                     <a class="nav-link" href="<%=Routes.LOGIN.getRoutePath()%>">Connexion </a>
                                 </li>
@@ -104,6 +105,23 @@
                     </c:otherwise>
                 </c:choose>
     		</ul>
+
+            <c:choose>
+                <c:when test="${sessionType == 'LOGGED_IN_SESSION'}">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ${username}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="<%=Routes.LOGOUT.getRoutePath()%>">Déconnexion</a>
+                            </div>
+                        </li>
+                    </ul>
+                </c:when>
+            </c:choose>
+
+
   		</div>
 
 	</nav>

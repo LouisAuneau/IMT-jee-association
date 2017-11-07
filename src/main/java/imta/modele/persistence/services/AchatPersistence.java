@@ -104,6 +104,13 @@ public interface AchatPersistence {
 	public List<AchatEntity> loadByUser(String username);
 	
 	/**
+	 * Load the AchatEntity occurrence of a user
+	 * @param username of the user
+	 * @return
+	 */
+	public AchatEntity loadByUserAndArticle(String username, String codeArticle);
+	
+	/**
 	 * Delete occurences for a given user.
 	 * @param String username - Username
 	 */

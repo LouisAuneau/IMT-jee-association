@@ -36,7 +36,7 @@ public class HomeServletTest {
     public void doGetTestNoSession () throws Exception {
         homeServlet.doGet(request, response);
         //Verify that doGet redirects on login
-        verify(response).sendRedirect("login");
+        verify(request).getRequestDispatcher("WEB-INF/pages/login.jsp");
     }
 
 }

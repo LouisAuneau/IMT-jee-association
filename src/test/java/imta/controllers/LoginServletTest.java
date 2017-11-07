@@ -1,8 +1,10 @@
 package imta.controllers;
 
-import org.junit.Before;
-import org.junit.Test;
-import imta.controllers.LoginServlet;
+import imta.modele.bean.jpa.UtilisateurEntity;
+import imta.modele.persistence.services.jpa.AchatPersistenceJPA;
+import imta.modele.persistence.services.jpa.UtilisateurPersistenceJPA;
+import imta.utils.Routes;
+import org.junit.*;
 import imta.utils.MyHttpSessionMock;
 import imta.utils.SessionType;
 
@@ -10,6 +12,9 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyBoolean;
@@ -24,6 +29,22 @@ public class LoginServletTest {
     private HttpServletResponse response;
     private HttpSession session;
     private LoginServlet loginServlet;
+
+    @BeforeClass
+    public static void beforeClass() throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        AchatPersistenceJPA achatDao = new AchatPersistenceJPA();
+        achatDao.deleteAll();
+        UtilisateurPersistenceJPA userDao = new UtilisateurPersistenceJPA();
+        UtilisateurEntity user = new UtilisateurEntity("mguyot", "1234", "mat", "guy", "","","","");
+        userDao.deleteAll();
+        userDao.insert(user);
+    }
+
+    @AfterClass
+    public static void afterClass() {
+        UtilisateurPersistenceJPA userDao = new UtilisateurPersistenceJPA();
+        userDao.deleteAll();
+    }
 
     @Before
     public void setUp() {
@@ -44,7 +65,7 @@ public class LoginServletTest {
         //Check that the session is deleted
         assertEquals(null, session.getAttribute("sessionType"));
         //Verify that doGet forwards on pages/login.jsp
-        verify(request).getRequestDispatcher("pages/login.jsp");
+        verify(request).getRequestDispatcher("WEB-INF/pages/login.jsp");
     }
 
     @Test
@@ -54,7 +75,7 @@ public class LoginServletTest {
         //Check that the session is not deleted
         assertEquals(SessionType.LOGIN_SESSION, session.getAttribute("sessionType"));
         //Verify that doGet forwards on pages/login.jsp
-        verify(request).getRequestDispatcher("pages/login.jsp");
+        verify(request).getRequestDispatcher("WEB-INF/pages/login.jsp");
     }
 
     @Test
@@ -63,7 +84,7 @@ public class LoginServletTest {
         when(request.getParameter("password")).thenReturn("1234");
         loginServlet.doPost(request, response);
         //Verify that doPost redirect on hello page
-        verify(response).sendRedirect("login");
+        verify(response).sendRedirect(Routes.HOME.getRoutePath());
     }
 
     @Test
@@ -72,7 +93,7 @@ public class LoginServletTest {
         assertEquals(SessionType.LOGIN_SESSION, request.getSession().getAttribute("sessionType"));
         assertEquals(true, request.getSession().getAttribute("noUsernameGiven"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("login");
+        verify(response).sendRedirect(Routes.LOGIN.getRoutePath());
     }
 
     @Test
@@ -82,7 +103,7 @@ public class LoginServletTest {
         assertEquals(SessionType.LOGIN_SESSION, request.getSession().getAttribute("sessionType"));
         assertEquals(true, request.getSession().getAttribute("noPasswordGiven"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("login");
+        verify(response).sendRedirect(Routes.LOGIN.getRoutePath());
     }
 
     @Test
@@ -93,7 +114,7 @@ public class LoginServletTest {
         assertEquals(SessionType.LOGIN_SESSION, request.getSession().getAttribute("sessionType"));
         assertEquals(true, request.getSession().getAttribute("connexionFails"));
         //Verify that doPost redirect on login page
-        verify(response).sendRedirect("login");
+        verify(response).sendRedirect(Routes.LOGIN.getRoutePath());
     }
 
 }
