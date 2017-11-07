@@ -52,6 +52,19 @@ public class CommandeServlet extends AssociationServlet {
     	// first checks
     	super.doPost(request, response);
     	
+    	String idAchat = request.getParameter("id");
+    	String username;
+    	
+    	// cas où on souhaite juste retirer un Achat de la commande
+    	if (idAchat != null) {
+    		
+    	}
+    	// cas où on veut supprimer tout le contenu de la commande
+    	else {
+    		username = (String) request.getSession().getAttribute("username");
+    		
+    		
+    	}
 	}
 
     private void loadAchats(String username) {
