@@ -14,18 +14,19 @@ import imta.modele.persistence.services.UtilisateurPersistence;
 import imta.modele.persistence.services.jpa.AchatPersistenceJPA;
 import imta.modele.persistence.services.jpa.ArticlePersistenceJPA;
 import imta.modele.persistence.services.jpa.UtilisateurPersistenceJPA;
+import imta.utils.Routes;
 import imta.utils.SessionType;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogueServlet extends AssociationServlet {
+public class CatalogueServlet extends HttpSecureServlet {
 
 	private List<ArticleEntity> articles;
 	private ArticlePersistence artiPers;
-	
-    @Override
+
+	@Override
     public void init() throws ServletException {
         System.out.println("Initializing imta.controllers.CatalogueServlet");
     }
@@ -34,7 +35,11 @@ public class CatalogueServlet extends AssociationServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-    	super.doGet(req,resp);
+        //We can access catalogue services only if we are logged in
+        if(!verifyLoggedIn(req)) {
+            resp.sendRedirect(Routes.HOME.getRoutePath());
+            return;
+        }
     	
     	this.loadArticles();
     	req.setAttribute("articles", this.articles);
@@ -47,8 +52,11 @@ public class CatalogueServlet extends AssociationServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-    	// first checks
-    	super.doPost(req,resp);
+        //We can access catalogue services only if we are logged in
+        if(!verifyLoggedIn(req)) {
+            resp.sendRedirect(Routes.HOME.getRoutePath());
+            return;
+        }
     	
     	AchatPersistence achaPers;
     	UtilisateurPersistence userPers;
@@ -82,7 +90,7 @@ public class CatalogueServlet extends AssociationServlet {
     		artiPers.save(article);
     		achaPers.insert(achat);
     	}
-    	resp.sendRedirect("catalogue");
+    	resp.sendRedirect(Routes.CATALOG.getRoutePath());
     }
     
     private void loadArticles() {

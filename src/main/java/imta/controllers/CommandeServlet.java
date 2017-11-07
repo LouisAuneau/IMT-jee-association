@@ -13,16 +13,18 @@ import javax.servlet.http.HttpSession;
 import imta.modele.bean.jpa.AchatEntity;
 import imta.modele.persistence.services.AchatPersistence;
 import imta.modele.persistence.services.jpa.AchatPersistenceJPA;
+import imta.utils.Routes;
+import imta.utils.SessionType;
 
 /**
  * Servlet implementation class CommandeServlet
  */
-public class CommandeServlet extends AssociationServlet {
+public class CommandeServlet extends HttpSecureServlet {
 	private static final long serialVersionUID = 1L;
     
 	private List<AchatEntity> achats;
 	private AchatPersistence achaPers;
-	
+
     @Override
     public void init() throws ServletException {
         System.out.println("Initializing imta.controllers.CommandeServlet");
@@ -30,10 +32,13 @@ public class CommandeServlet extends AssociationServlet {
 	
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-    	
-    	// first checks
-    	super.doGet(request,response);
+			throws ServletException, IOException
+    {
+        //We can access command services only if we are logged in
+        if(!verifyLoggedIn(request)) {
+            response.sendRedirect(Routes.HOME.getRoutePath());
+            return;
+        }
     	
     	HttpSession session = request.getSession();
     	String username = (String) session.getAttribute("username");
@@ -47,10 +52,13 @@ public class CommandeServlet extends AssociationServlet {
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-    	
-    	// first checks
-    	super.doPost(request, response);
+			throws ServletException, IOException
+    {
+        //We can access command services only if we are logged in
+        if(!verifyLoggedIn(request)) {
+            response.sendRedirect(Routes.HOME.getRoutePath());
+            return;
+        }
     	
 	}
 
