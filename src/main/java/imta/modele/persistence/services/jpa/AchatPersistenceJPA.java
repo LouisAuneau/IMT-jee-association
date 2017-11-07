@@ -71,9 +71,11 @@ public class AchatPersistenceJPA extends GenericJpaService<AchatEntity, Integer>
 			@Override
 			public Object exectue(EntityManager em) throws PersistenceException {
 				Query query = em.createNamedQuery("AchatEntity.deleteAll");
-				return query.getSingleResult() ;
+				return query.executeUpdate() ;
 			}
-		} ;
+		};
+		
+		execute(operation, true);
 	}
 		
 		
@@ -92,5 +94,21 @@ public class AchatPersistenceJPA extends GenericJpaService<AchatEntity, Integer>
 		
 		// JPA operation execution 
 		return (List<AchatEntity>) execute(operation);
+	}
+	
+	@Override
+	public void deleteByUser(final String username) {
+		// JPA operation definition 
+		JpaOperation operation = new JpaOperation() {
+			@Override
+			public Object exectue(EntityManager em) throws PersistenceException {
+				Query query = em.createNamedQuery("AchatEntity.deleteByUser");
+				query.setParameter("username", username);
+				return query.executeUpdate();
+			}
+		};
+		
+		// JPA operation execution 
+		execute(operation, true);
 	}
 }

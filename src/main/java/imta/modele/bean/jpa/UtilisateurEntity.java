@@ -26,10 +26,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="UTILISATEUR", schema="ADMIN" )
-// Define named queries here
 @NamedQueries ( {
   @NamedQuery ( name="UtilisateurEntity.countAll", query="SELECT COUNT(x) FROM UtilisateurEntity x" ),
-  @NamedQuery ( name="UtilisateurEntity.deleteAll", query="DELETE FROM UtilisateurEntity CASCADE" )
+  @NamedQuery ( name="UtilisateurEntity.deleteAll", query="DELETE FROM UtilisateurEntity" )
 } )
 public class UtilisateurEntity implements Serializable {
 
@@ -104,7 +103,7 @@ public class UtilisateurEntity implements Serializable {
     //----------------------------------------------------------------------
     // ENTITY LINKS ( RELATIONSHIP )
     //----------------------------------------------------------------------
-    @OneToMany(mappedBy="utilisateur2", targetEntity=AchatEntity.class)
+    @OneToMany(mappedBy="utilisateur2", targetEntity=AchatEntity.class, cascade=CascadeType.REMOVE)
     private List<AchatEntity> listOfAchat ;
 
 

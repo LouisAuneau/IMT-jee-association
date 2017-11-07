@@ -23,7 +23,7 @@ import javax.persistence.*;
 @Table(name="ARTICLE", schema="ADMIN" )
 @NamedQueries ( {
   @NamedQuery ( name="ArticleEntity.countAll", query="SELECT COUNT(x) FROM ArticleEntity x" ),
-  @NamedQuery ( name="ArticleEntity.deleteAll", query="DELETE FROM ArticleEntity CASCADE" )
+  @NamedQuery ( name="ArticleEntity.deleteAll", query="DELETE FROM ArticleEntity" )
 } )
 public class ArticleEntity implements Serializable {
 
@@ -75,7 +75,7 @@ public class ArticleEntity implements Serializable {
     /**
      * Liste des personnes ayant achete cet article.
      */
-    @OneToMany(mappedBy="article2", targetEntity=AchatEntity.class)
+    @OneToMany(mappedBy="article2", targetEntity=AchatEntity.class, cascade=CascadeType.REMOVE)
     private List<AchatEntity> listOfAchat ;
 
 
