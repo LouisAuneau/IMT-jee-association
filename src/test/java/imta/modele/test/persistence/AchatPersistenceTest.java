@@ -6,7 +6,10 @@ package imta.modele.test.persistence;
 
 
 import imta.modele.bean.jpa.AchatEntity;
+import imta.modele.bean.jpa.ArticleEntity;
 import imta.modele.mock.AchatEntityMock;
+import imta.modele.mock.ArticleEntityMock;
+import imta.modele.mock.UtilisateurEntityMock;
 import imta.modele.persistence.PersistenceServiceProvider;
 import imta.modele.persistence.services.AchatPersistence;
 
@@ -20,7 +23,17 @@ import org.junit.Test;
  *
  */
 public class AchatPersistenceTest 
-{
+{	
+	@Test
+	public void testDeleteAll() {
+		
+		System.out.println("Test deleteAll ..." );
+		
+		
+		AchatPersistence service = PersistenceServiceProvider.getService(AchatPersistence.class);
+		System.out.println("CountAll = " + service.countAll() );
+	}
+	
 	@Test
 	public void test1() {
 		

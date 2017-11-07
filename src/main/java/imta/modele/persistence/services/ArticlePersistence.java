@@ -91,4 +91,9 @@ public interface ArticlePersistence {
 	 */
 	public long countAll();
 	
+	/**
+	 * Delete all the occurrences
+	 * @return
+	 */
+	public void deleteAll();
 }

@@ -91,4 +91,9 @@ public interface UtilisateurPersistence {
 	 */
 	public long countAll();
 	
+	/**
+	 * Delete all the occurrences
+	 * @return
+	 */
+	public long deleteAll();
 }

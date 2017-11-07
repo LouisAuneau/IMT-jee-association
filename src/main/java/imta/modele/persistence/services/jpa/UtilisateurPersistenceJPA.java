@@ -62,4 +62,17 @@ public class UtilisateurPersistenceJPA extends GenericJpaService<UtilisateurEnti
 		return (Long) execute(operation);
 	}
 
+	@Override
+	public long deleteAll() {
+		// JPA operation definition 
+		JpaOperation operation = new JpaOperation() {
+			@Override
+			public Object exectue(EntityManager em) throws PersistenceException {
+				Query query = em.createNamedQuery("UtilisateurEntity.deleteAll");
+				return query.getSingleResult() ;
+			}
+		} ;
+		// JPA operation execution 
+		execute(operation);
+	}
 }

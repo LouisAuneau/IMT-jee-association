@@ -11,10 +11,12 @@ import java.security.NoSuchAlgorithmException;
 import imta.modele.bean.jpa.UtilisateurEntity;
 import imta.modele.mock.UtilisateurEntityMock;
 import imta.modele.persistence.PersistenceServiceProvider;
+import imta.modele.persistence.services.AchatPersistence;
 import imta.modele.persistence.services.UtilisateurPersistence;
 
 import org.junit.Assert;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 /**
  * JUnit test case for Utilisateur persistence service
@@ -22,8 +24,22 @@ import org.junit.Test;
  * @author Telosys Tools Generator
  *
  */
-public class UtilisateurPersistenceTest 
+public class UtilisateurPersistenceTest
 {
+	@Test
+	public void testDeleteAll() throws UnsupportedEncodingException, NoSuchAlgorithmException {
+		UtilisateurPersistence service = PersistenceServiceProvider.getService(UtilisateurPersistence.class);
+		service.deleteAll();
+		System.out.println("Test deleteAll ..." );
+		
+		UtilisateurEntity utilisateur = new UtilisateurEntity("test", "password", "nom", "prenom", "addresse", "city", "zipcode", "pays");
+		service.insert(utilisateur);
+		assertEquals(service.countAll(), 1.0, 0.1);
+		
+		service.deleteAll();
+		assertEquals(service.countAll(), 0.0, 0.1);
+	}
+	
 	@Test
 	public void test1() {
 		

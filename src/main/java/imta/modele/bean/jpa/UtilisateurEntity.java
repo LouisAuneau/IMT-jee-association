@@ -28,7 +28,8 @@ import javax.persistence.*;
 @Table(name="UTILISATEUR", schema="ADMIN" )
 // Define named queries here
 @NamedQueries ( {
-  @NamedQuery ( name="UtilisateurEntity.countAll", query="SELECT COUNT(x) FROM UtilisateurEntity x" )
+  @NamedQuery ( name="UtilisateurEntity.countAll", query="SELECT COUNT(x) FROM UtilisateurEntity x" ),
+  @NamedQuery ( name="UtilisateurEntity.deleteAll", query="DELETE FROM UtilisateurEntity CASCADE" )
 } )
 public class UtilisateurEntity implements Serializable {
 
