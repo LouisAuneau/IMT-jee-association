@@ -4,12 +4,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Jee-association</title>
-    <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="../../css/bootstrap-grid.min.css" />
-    <link type="text/css" rel="stylesheet" href="../../css/bootstrap-reboot.min.css" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-grid.min.css" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-reboot.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin-bottom: 40px">
