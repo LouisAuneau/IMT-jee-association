@@ -6,6 +6,8 @@
 package imta.modele.persistence.services.jpa;
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
@@ -72,7 +74,23 @@ public class AchatPersistenceJPA extends GenericJpaService<AchatEntity, Integer>
 				return query.getSingleResult() ;
 			}
 		} ;
+	}
+		
+		
+	@Override
+	public List<AchatEntity> loadByUser(final String username) {
+		
+		// JPA operation definition 
+		JpaOperation operation = new JpaOperation() {
+			@Override
+			public Object exectue(EntityManager em) throws PersistenceException {
+				Query query = em.createNamedQuery("AchatEntity.loadByUser");
+				query.setParameter("username", username);
+				return query.getResultList();
+			}
+		};
+		
 		// JPA operation execution 
-		execute(operation);
+		return (List<AchatEntity>) execute(operation);
 	}
 }

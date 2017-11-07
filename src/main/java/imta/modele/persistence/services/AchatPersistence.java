@@ -92,7 +92,14 @@ public interface AchatPersistence {
 	public long countAll();
 	
 	/**
-	 * Delete all occurences.
+	 * Delete all occurrences.
 	 */
 	public void deleteAll();
+	
+	/**
+	 * Load the AchatEntity occurrences of a user
+	 * @param username of the user
+	 * @return
+	 */
+	public List<AchatEntity> loadByUser(String username);
 }
