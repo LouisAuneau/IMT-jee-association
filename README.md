@@ -72,13 +72,13 @@ CREATE TABLE Achat (
 );
 
 -- Jeux de données
-INSERT INTO "ADMIN"."ARTICLE" (CODE,NOM,PRIX,QUANTITE, DESCRIPTION) 
-     ('C1' ,'Casquette des Lakers', 20.00, 20, 'La casquette mytique du club de basketball des Lakers !'),
-     ('C2' ,'Casquette des Bulls', 20.00, 30, 'La casquette mytique du club de basketball des Bulls !'),
-     ('C3' ,'Casquette des Celtics', 20.00, 20, 'La casquette mytique du club de basketball des Celtics !'),
-     ('M1' ,'Maillot Jordan', 99.99, 20, 'Maillot de l\'icone Micheal Jordan.'),
-     ('M2' ,'Maillot Bird', 99.99, 20, 'Maillot de l\'icone Larry Bird.'),
-     ('M3' ,'Maillot James', 99.99, 20, 'Maillot de la superstar des Cavs Lebron James.'),
-     ('B1' ,'Ballon', 40.00, 50, 'Ballon Spalding en cuir authentique.'),
-     ('B2' ,'Bracelet', 5.50, 100, 'Bracelet NBA.');
+INSERT INTO "ADMIN"."ARTICLE" (CODE,NOM,PRIX,QUANTITE, DESCRIPTION) VALUES
+('C1' ,'Casquette des Lakers', 20.00, 20, 'La casquette mytique du club de basketball des Lakers !'),
+('C2' ,'Casquette des Bulls', 20.00, 30, 'La casquette mytique du club de basketball des Bulls !'),
+('C3' ,'Casquette des Celtics', 20.00, 20, 'La casquette mytique du club de basketball des Celtics !'),
+('M1' ,'Maillot Jordan', 99.99, 20, 'Maillot de l''icone Micheal Jordan.'),
+     ('M2' ,'Maillot Bird', 99.99, 20, 'Maillot de l''icone Larry Bird.'),
+('M3' ,'Maillot James', 99.99, 20, 'Maillot de la superstar des Cavs Lebron James.'),
+('B1' ,'Ballon', 40.00, 50, 'Ballon Spalding en cuir authentique.'),
+('B2' ,'Bracelet', 5.50, 100, 'Bracelet NBA.');
 ```
