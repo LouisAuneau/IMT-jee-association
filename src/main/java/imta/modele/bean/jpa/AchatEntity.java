@@ -40,8 +40,7 @@ public class AchatEntity implements Serializable {
     // ENTITY PRIMARY KEY ( BASED ON A SINGLE FIELD )
     //----------------------------------------------------------------------
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="ID", nullable=false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer    id           ;
 
 

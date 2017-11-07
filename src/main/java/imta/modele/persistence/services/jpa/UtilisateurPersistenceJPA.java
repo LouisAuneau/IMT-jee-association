@@ -72,6 +72,7 @@ public class UtilisateurPersistenceJPA extends GenericJpaService<UtilisateurEnti
 				return query.executeUpdate();
 			}
 		} ;
+
 		// JPA operation execution 
 		execute(operation, true);
 	}

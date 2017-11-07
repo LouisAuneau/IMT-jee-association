@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogueServlet extends HttpServlet {
+public class CatalogueServlet extends AssociationServlet {
 
 	private List<ArticleEntity> articles;
 	private ArticlePersistence artiPers;
@@ -34,13 +34,7 @@ public class CatalogueServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-    	// check if an user is logged
-    	if(req.getSession() == null
-    			|| req.getSession().getAttribute("sessionType") != SessionType.LOGGED_IN_SESSION)
-    	{
-    		resp.sendRedirect("login");
-    		return;
-    	}    	
+    	super.doGet(req,resp);
     	
     	this.loadArticles();
     	req.setAttribute("articles", this.articles);
@@ -53,13 +47,8 @@ public class CatalogueServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-    	// check if an user is logged
-    	if(req.getSession() == null
-    			|| req.getSession().getAttribute("sessionType") != SessionType.LOGGED_IN_SESSION)
-    	{
-    		resp.sendRedirect("login");
-    		return;
-    	}  
+    	// first checks
+    	super.doPost(req,resp);
     	
     	AchatPersistence achaPers;
     	UtilisateurPersistence userPers;
@@ -90,9 +79,6 @@ public class CatalogueServlet extends HttpServlet {
     		achat.setArticle2(article);
     		achat.setUtilisateur2(user);
 
-    		// TODO utiliser count all pour incrémenter l'id ou utiliser insert
-    		achat.setId(2);
-    		
     		artiPers.save(article);
     		achaPers.insert(achat);
     	}
