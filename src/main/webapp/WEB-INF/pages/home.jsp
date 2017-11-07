@@ -14,8 +14,8 @@
             Vous pouvez :
         </p>
 
-		<a href="catalogue">Consulter les articles disponibles</a><br/>
-		<a href="commande">Consulter les articles disponibles</a><br/>
+		<a href="<%=Routes.CATALOG.getRoutePath()%>">Consulter les articles disponibles</a><br/>
+		<a href="<%=Routes.COMMAND.getRoutePath()%>">Consulter les articles disponibles</a><br/>
         <a href="#">Se déconnecter</a><br/>
 	</div>
 

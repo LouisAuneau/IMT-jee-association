@@ -57,7 +57,7 @@
         </c:choose>
 
         <!--Formulaire de connexion-->
-        <form action="register" method="post">
+        <form action="<%=Routes.REGISTER.getRoutePath()%>" method="post">
             <div class="form-group">
                 <label for="usernameInput">Identifiant <span class="badge badge-primary">* (Champ requis)</span></label>
                 <input class="form-control" type="text" id="usernameInput" name="username" placeholder="noémie" value="${username}"/>
@@ -104,7 +104,7 @@
 
         <!--Lien d'accès à la page de login-->
         <div class="alert alert-primary" role="alert">
-            Vous êtes déjà enregistré ? <a href="login">Connectez-vous</a>
+            Vous êtes déjà enregistré ? <a href="<%=Routes.LOGIN.getRoutePath()%>">Connectez-vous</a>
         </div>
 
     </div>

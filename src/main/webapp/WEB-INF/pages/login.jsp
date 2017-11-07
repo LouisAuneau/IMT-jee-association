@@ -32,7 +32,7 @@
         </c:choose>
 
         <!--Formulaire de connexion-->
-        <form action="login" method="post">
+        <form action="<%=Routes.LOGIN.getRoutePath()%>" method="post">
             <div class="form-group">
                 <label for="usernameInput">Identifiant</label>
                 <input class="form-control" type="text" id="usernameInput" name="username" placeholder="noémie" value="${username}"/>
@@ -46,7 +46,7 @@
 
         <!--Lien d'accès à la page de création de compte-->
         <div class="alert alert-primary" role="alert">
-            Pas encore enregistré ? <a href="register">Créer votre compte</a>
+            Pas encore enregistré ? <a href="<%=Routes.REGISTER.getRoutePath()%>">Créer votre compte</a>
         </div>
 
     </div>

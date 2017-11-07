@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="imta.utils.Routes" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -23,7 +24,7 @@
         >
             <span class="navbar-toggler-icon"></span>
         </button>
-  		<a class="navbar-brand" href="home">Associ'active</a>
+  		<a class="navbar-brand" href="<%=Routes.HOME.getRoutePath()%>">Associ'active</a>
 
   		<div class="collapse navbar-collapse" id="navbarSupportedContent">
     		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -35,12 +36,12 @@
                             <c:when test="${requestScope['javax.servlet.forward.request_uri'] != '/'
                                             && requestScope['javax.servlet.forward.request_uri'] != '/home'}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="home">Accueil </a>
+                                    <a class="nav-link" href="<%=Routes.HOME.getRoutePath()%>">Accueil </a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="home">Accueil <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="<%=Routes.HOME.getRoutePath()%>">Accueil <span class="sr-only">(current)</span></a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -48,12 +49,12 @@
                         <c:choose>
                             <c:when test="${requestScope['javax.servlet.forward.request_uri'] != '/catalogue'}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="catalogue">Catalogue </a>
+                                    <a class="nav-link" href="<%=Routes.CATALOG.getRoutePath()%>">Catalogue </a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="catalogue">Catalogue <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="<%=Routes.CATALOG.getRoutePath()%>">Catalogue <span class="sr-only">(current)</span></a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -61,12 +62,12 @@
                         <c:choose>
                             <c:when test="${requestScope['javax.servlet.forward.request_uri'] != '/commande'}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="commande">Commande </a>
+                                    <a class="nav-link" href="<%=Routes.COMMAND.getRoutePath()%>">Commande </a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="commande">Commande <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="<%=Routes.COMMAND.getRoutePath()%>">Commande <span class="sr-only">(current)</span></a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -77,12 +78,12 @@
                         <c:choose>
                             <c:when test="${requestScope['javax.servlet.forward.request_uri'] != '/login'}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="login">Connexion </a>
+                                    <a class="nav-link" href="<%=Routes.LOGIN.getRoutePath()%>">Connexion </a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="login">Connexion  <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="<%=Routes.LOGIN.getRoutePath()%>">Connexion  <span class="sr-only">(current)</span></a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
@@ -90,12 +91,12 @@
                         <c:choose>
                             <c:when test="${requestScope['javax.servlet.forward.request_uri'] != '/register'}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="register">Inscription </a>
+                                    <a class="nav-link" href="<%=Routes.REGISTER.getRoutePath()%>">Inscription </a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="register">Inscription <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="<%=Routes.REGISTER.getRoutePath()%>">Inscription <span class="sr-only">(current)</span></a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
