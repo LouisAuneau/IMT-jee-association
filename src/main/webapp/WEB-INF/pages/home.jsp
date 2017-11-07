@@ -15,7 +15,7 @@
         </p>
 
 		<a href="catalogue">Consulter les articles que vous propose Associ'active</a><br/>
-		<a href="commande">Consulter vos commandes</a><br/>
+		<a href="commande">Consulter votre commande</a><br/>
         <a href="#">Vous déconnecter</a><br/>
 	</div>
 

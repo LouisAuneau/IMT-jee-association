@@ -111,4 +111,26 @@ public class AchatPersistenceJPA extends GenericJpaService<AchatEntity, Integer>
 		// JPA operation execution 
 		execute(operation, true);
 	}
+
+	@Override
+	public AchatEntity loadByUserAndArticle(final String username, final String codeArticle) {
+		// JPA operation definition 
+		JpaOperation operation = new JpaOperation() {
+			@Override
+			public Object exectue(EntityManager em) throws PersistenceException {
+				Query query = em.createNamedQuery("AchatEntity.loadByUserAndArticle");
+				query.setParameter("username", username);
+				query.setParameter("codeArticle", codeArticle);
+				return query.getResultList();
+			}
+		};
+				
+		// JPA operation execution 
+		List<AchatEntity> result = (List<AchatEntity>) execute(operation);
+		
+		if (result == null || result.isEmpty()) {
+			return null;
+		}
+		return result.get(0);
+	}
 }

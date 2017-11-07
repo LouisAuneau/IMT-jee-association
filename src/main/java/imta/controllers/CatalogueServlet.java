@@ -22,6 +22,9 @@ import java.util.List;
 
 public class CatalogueServlet extends AssociationServlet {
 
+    private static final String TITRE_CATALOGUE_VIDE = "Notre catalogue est vide...";
+    private static final String TITRE = "Voici notre catalogue";
+    
 	private List<ArticleEntity> articles;
 	private ArticlePersistence artiPers;
 	
@@ -36,7 +39,21 @@ public class CatalogueServlet extends AssociationServlet {
     {
     	super.doGet(req,resp);
     	
+    	Boolean catalogueVide;
+    	String header;
     	this.loadArticles();
+    	
+    	// on regarde si le catalogue est vide
+    	if (articles.isEmpty()) {
+    		catalogueVide = true;
+    		header = TITRE_CATALOGUE_VIDE;
+    	}
+    	else {
+    		catalogueVide = false;
+    		header = TITRE;
+    	}
+    	req.setAttribute("catalogueVide", catalogueVide);
+    	req.setAttribute("header", header);
     	req.setAttribute("articles", this.articles);
     	
     	// Forward request
@@ -61,6 +78,7 @@ public class CatalogueServlet extends AssociationServlet {
     	Integer quantiteCommande = Integer.parseInt(req.getParameter("quantiteComm"));
     	Integer stock = Integer.parseInt(req.getParameter("stock"));
     	
+    	// Creation d'un achat à partir d'un article
     	if (username != null && codeArticle != null && quantiteCommande != null && stock != null) {
     		achaPers = new AchatPersistenceJPA();
     		userPers = new UtilisateurPersistenceJPA();
@@ -72,19 +90,30 @@ public class CatalogueServlet extends AssociationServlet {
     		article = artiPers.load(codeArticle);
     		article.setQuantite(stock - quantiteCommande);
     		
-    		user = userPers.load(username);
+    		achat = achaPers.loadByUserAndArticle(username, codeArticle);
     		
-    		achat = new AchatEntity();
-    		achat.setQuantite(quantiteCommande);
-    		achat.setArticle2(article);
-    		achat.setUtilisateur2(user);
+    		// si un achat de cet article n'existait pas, on le crée
+    		if (achat == null) {
+    			achat = new AchatEntity();
+        		achat.setQuantite(quantiteCommande);
+        		achat.setArticle2(article);
+        		user = userPers.load(username);
+        		achat.setUtilisateur2(user);
+    		}
+    		// sinon on augmente juste sa quantité
+    		else {
+    			achat.setQuantite(achat.getQuantite() + quantiteCommande);
+    		}
 
     		artiPers.save(article);
-    		achaPers.insert(achat);
+    		achaPers.save(achat);
     	}
     	resp.sendRedirect("catalogue");
     }
     
+    /**
+     * Récupère les articles présents dans le catalogue de l'association
+     */
     private void loadArticles() {
     	
     	if (articles == null) {
